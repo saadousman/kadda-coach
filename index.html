@@ -297,7 +297,7 @@
             0% {
                 transform: translate(-50%, -50%) scale(1);
             }
-            100% {
+             100% {
                 transform: translate(-50%, -50%) scale(5);
             }
         }
@@ -361,11 +361,7 @@
         <button class="btn btn-warning btn-lg btn-block" onclick="showTranslationGame()">English-Sinhala Translation Game</button>
         <button class="btn btn-warning btn-lg btn-block" onclick="showCalendlyPage()">Book a Session</button>
         <a href="https://www.tiktok.com/@kadda.coach?_t=8mQxmejjlgt&_r=1" class="tiktok-link btn btn-link" target="_blank">Follow us on TikTok</a>
-        <p>This is a Mobile Website</p>
-        <p>👍App Coming Soon!👍<p>
-        <p>❤️Share this Page with Friends❤️</p>
         <button class="share-btn btn btn-success btn-lg btn-block" onclick="sharePage()">Share This Page</button>
-        <p>Version 1.1 - Early Beta Release</p>
     </div>
     <div id="nameForm" class="name-form container-custom" style="display:none;">
         <h2>Enter Your Name</h2>
@@ -386,7 +382,28 @@
         <div class="popup incorrect" id="incorrectPopupTranslation">Oops, try again!</div>
         <div class="popup next-game" id="nextGamePopupTranslation" onclick="showNextTranslationGame()">Next Game</div>
         <div class="overlay" id="overlayTranslation"></div>
-        <button class="btn btn-warning btn-lg btn-block" onclick="goToHome()">Return to Homepage</button>
+    </div>
+    <div id="translationCongratsMessage" style="display: none;">
+        <div class="container">
+            <div class="content">
+                <div class="congrats-message">
+                    <h2>Congratulations!</h2>
+                    <p>The first step to speaking well is understanding and listening. Keep practicing and you'll see great improvements in your English skills!</p>
+                    <p>හොඳින් කතා කිරීමේ පළමු පියවර වන්නේ අවබෝධය සහ සවන්දීමයි. දිගටම පුහුණු වන්න, එවිට ඔබේ ඉංග්‍රීසි කුසලතාවන්හි විශාල දියුණුවක් ඔබට පෙනෙනු ඇත!</p>
+                    <div class="score">Your Score: <span id="finalScoreTranslation"></span></div>
+                    <div class="animated-smiley">
+                        <img src="https://img.icons8.com/emoji/48/000000/smiling-face-with-smiling-eyes.png" alt="Smiley">
+                        <div class="dialog-box">
+                            <p>I won the game!</p>
+                        </div>
+                    </div>
+                    <div class="medal-text" id="medalTextTranslation"></div>
+                    <button class="home-btn btn btn-warning btn-lg btn-block" onclick="goToHome()">Go to Homepage</button>
+                    <button class="share-achievement-btn btn btn-success btn-lg btn-block" onclick="generateAndDownloadImage()">Share Achievement</button>
+                    <canvas id="shareCanvas" width="400" height="300"></canvas>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="appContent" style="display:none;">
         <div class="navbar bg-warning container-custom">
@@ -522,7 +539,7 @@
                 "answers": [
                     {"text": "ගිහින් එන්නම්", "correct": true},
                     {"text": "ඔබට සුභ දවසක්", "correct": false},
-                    {"text": "ඔබට සුබ පැතුම්", "correct": false},
+                    {"text": "ඔබට සුභ පැතුම්", "correct": false},
                     {"text": "ආයුබෝවන්", "correct": false}
                 ]
             }
@@ -644,7 +661,7 @@
             if (currentGameIndex < translationGamesData.length) {
                 showTranslationGameElement(currentGameIndex);
             } else {
-                displayCongratsMessage();
+                displayTranslationCongratsMessage();
             }
             document.getElementById('nextGamePopupTranslation').style.display = 'none';
         }
@@ -727,8 +744,20 @@
             localStorage.setItem('highScore', Math.max(points, localStorage.getItem('highScore') || 0));
         }
 
-        function determineMedal(score) {
-            const medalText = document.getElementById('medalText');
+        function displayTranslationCongratsMessage() {
+            const gameContainer = document.getElementById('translation-game-container');
+            gameContainer.innerHTML = '';
+            const congratsMessage = document.getElementById('translationCongratsMessage');
+            document.getElementById('finalScoreTranslation').innerText = points;
+            congratsMessage.style.display = 'block';
+            createFireworks();
+            determineMedal(points, 'Translation');
+            sendDataToGoogleSheets(userName, points);
+            localStorage.setItem('highScoreTranslation', Math.max(points, localStorage.getItem('highScoreTranslation') || 0));
+        }
+
+        function determineMedal(score, gameType = 'Comprehension') {
+            const medalText = gameType === 'Comprehension' ? document.getElementById('medalText') : document.getElementById('medalTextTranslation');
             if (score >= 50) {
                 medalText.innerText = 'Gold';
                 medalText.className = 'medal-text gold';
@@ -773,6 +802,7 @@
             document.getElementById('username').innerText = 'Username';
             document.getElementById('nameForm').style.display = 'none';
             document.getElementById('congratsMessage').style.display = 'none';
+            document.getElementById('translationCongratsMessage').style.display = 'none';
             document.getElementById('nextGamePopup').style.display = 'none';
             document.getElementById('nextGamePopupTranslation').style.display = 'none';
             document.getElementById('overlay').style.display = 'none';
@@ -798,7 +828,7 @@
         }
 
         function createFireworks() {
-            const congratsMessage = document.getElementById('congratsMessage');
+            const congratsMessage = document.querySelector('.congrats-message:visible');
             for (let i = 0; i < 10; i++) {
                 const firework = document.createElement('div');
                 firework.classList.add('firework');
