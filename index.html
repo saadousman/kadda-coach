@@ -361,6 +361,11 @@
         <button class="btn btn-warning btn-lg btn-block" onclick="showTranslationGame()">English-Sinhala Translation Game</button>
         <button class="btn btn-warning btn-lg btn-block" onclick="showCalendlyPage()">Book a Session</button>
         <a href="https://www.tiktok.com/@kadda.coach?_t=8mQxmejjlgt&_r=1" class="tiktok-link btn btn-link" target="_blank">Follow us on TikTok</a>
+        <p>This is a Mobile Website</p>
+        <p>👍App Coming Soon!👍<p>
+        <p>❤️Share this Page with Friends❤️</p>
+        <button class="share-btn btn btn-success btn-lg btn-block" onclick="sharePage()">Share This Page</button>
+        <p>Version 1.1 - Early Beta Release</p>
         <button class="share-btn btn btn-success btn-lg btn-block" onclick="sharePage()">Share This Page</button>
     </div>
     <div id="nameForm" class="name-form container-custom" style="display:none;">
@@ -575,7 +580,7 @@
             calendlyEmbed.frameBorder = '0';
             document.getElementById('calendlyEmbed').appendChild(calendlyEmbed);
         }
-        
+
         function createGame(game) {
             const container = document.createElement('div');
             container.classList.add('container-custom');
@@ -681,7 +686,9 @@
                 setTimeout(() => {
                     correctPopup.style.display = 'none';
                     overlay.style.display = 'none';
-                    document.getElementById('nextGamePopup').style.display = 'block';
+                    if (currentGameIndex < comprehensionGamesData.length - 1) {
+                        document.getElementById('nextGamePopup').style.display = 'block';
+                    }
                 }, 2000);
             } else {
                 playSound('incorrect');
@@ -711,7 +718,9 @@
                 setTimeout(() => {
                     correctPopup.style.display = 'none';
                     overlay.style.display = 'none';
-                    document.getElementById('nextGamePopupTranslation').style.display = 'block';
+                    if (currentGameIndex < translationGamesData.length - 1) {
+                        document.getElementById('nextGamePopupTranslation').style.display = 'block';
+                    }
                 }, 2000);
             } else {
                 playSound('incorrect');
