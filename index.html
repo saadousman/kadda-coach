@@ -366,7 +366,6 @@
         <p>❤️Share this Page with Friends❤️</p>
         <button class="share-btn btn btn-success btn-lg btn-block" onclick="sharePage()">Share This Page</button>
         <p>Version 1.1 - Early Beta Release</p>
-        
     </div>
     <div id="nameForm" class="name-form container-custom" style="display:none;">
         <h2>Enter Your Name</h2>
@@ -385,7 +384,6 @@
         <div id="translation-game-container" class="container-custom"></div>
         <div class="popup correct" id="correctPopupTranslation">That's correct!</div>
         <div class="popup incorrect" id="incorrectPopupTranslation">Oops, try again!</div>
-        <div class="popup next-game" id="nextGamePopupTranslation" onclick="showNextTranslationGame()">Next Game</div>
         <div class="overlay" id="overlayTranslation"></div>
     </div>
     <div id="translationCongratsMessage" style="display: none;">
@@ -425,7 +423,6 @@
         <div id="game-container" class="container-custom"></div>
         <div class="popup correct" id="correctPopup">That's correct!</div>
         <div class="popup incorrect" id="incorrectPopup">Oops, try again!</div>
-        <div class="popup next-game" id="nextGamePopup" onclick="showNextGame()">Next Game</div>
         <div class="overlay" id="overlay"></div>
         <div id="congratsMessage" style="display: none;">
             <div class="container">
@@ -688,6 +685,8 @@
                     overlay.style.display = 'none';
                     if (currentGameIndex < comprehensionGamesData.length - 1) {
                         document.getElementById('nextGamePopup').style.display = 'block';
+                    } else {
+                        displayCongratsMessage();
                     }
                 }, 2000);
             } else {
@@ -720,6 +719,8 @@
                     overlay.style.display = 'none';
                     if (currentGameIndex < translationGamesData.length - 1) {
                         document.getElementById('nextGamePopupTranslation').style.display = 'block';
+                    } else {
+                        displayTranslationCongratsMessage();
                     }
                 }, 2000);
             } else {
