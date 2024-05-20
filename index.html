@@ -297,7 +297,7 @@
             0% {
                 transform: translate(-50%, -50%) scale(1);
             }
-            100% {
+             100% {
                 transform: translate(-50%, -50%) scale(5);
             }
         }
@@ -381,414 +381,6 @@
         <button class="btn btn-warning btn-lg btn-block" onclick="goToHome()">Return to Homepage</button>
     </div>
     <div id="translationGamePage" class="name-form container-custom" style="display:none;">
-        <div class="navbar bg-warning container-custom">
-            <div class="points">
-                Points: <span id="points">0</span> <img src="https://img.icons8.com/emoji/48/000000/coin-emoji.png" alt="coin icon">
-            </div>
-            <div id="username">Username</div>
-        </div>
-        <h2>English-Sinhala Translation Game</h2>
-        <div id="translation-game-container" class="container-custom"></div>
-        <div class="popup correct" id="correctPopupTranslation">That's correct!</div>
-        <div class="popup incorrect" id="incorrectPopupTranslation">Oops, try again!</div>
-        <div class="popup next-game" id="nextGamePopupTranslation" onclick="showNextTranslationGame()">Next Game</div>
-        <div class="overlay" id="overlayTranslation"></div>
-    </div>
-    <div id="translationCongratsMessage" style="display: none;">
-        <div class="container">
-            <div class="content">
-                <div class="congrats-message">
-                    <h2>Congratulations!</h2>
-                    <p>The first step to speaking well is understanding and listening. Keep practicing and you'll see great improvements in your English skills!</p>
-                    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spoken English App</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f0f2f5;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .container-custom {
-            max-width: 400px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .header {
-            background-color: #ffcc00;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            transition: background-color 0.3s ease;
-        }
-
-        .header .title {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .video-frame {
-            width: 100%;
-            height: 200px;
-            border: none;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .question {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .answer-btn {
-            background-color: #ffcc00;
-            border: none;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            color: #333;
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            animation: pulse 1.5s infinite;
-            margin-bottom: 10px;
-            position: relative;
-        }
-
-        .answer-btn:active {
-            background-color: #ffb700;
-            transform: scale(0.95);
-        }
-
-        .answer-btn::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.8em;
-            opacity: 0;
-            white-space: nowrap;
-            pointer-events: none;
-            transition: opacity 0.3s;
-        }
-
-        .answer-btn:hover::after {
-            opacity: 1;
-        }
-
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            z-index: 10;
-            animation: fadeIn 0.3s ease-in-out;
-        }
-
-        .popup.correct {
-            border: 2px solid #4CAF50;
-            color: #4CAF50;
-        }
-
-        .popup.incorrect {
-            border: 2px solid #F44336;
-            color: #F44336;
-        }
-
-        .popup.next-game {
-            border: 2px solid #ffcc00;
-            color: #333;
-            font-weight: bold;
-            font-size: 1.2em;
-            animation: pulse 1s infinite;
-            cursor: pointer;
-        }
-
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 5;
-            animation: fadeIn 0.3s ease-in-out;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .congrats-message {
-            text-align: center;
-            margin-top: 20px;
-            padding: 20px;
-        }
-
-        .congrats-message h2 {
-            font-size: 1.5em;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .congrats-message p {
-            font-size: 1em;
-            color: #555;
-            margin-bottom: 20px;
-        }
-
-        .score {
-            font-size: 2em;
-            color: #ff5722;
-            margin-bottom: 20px;
-        }
-
-        .home-btn, .share-achievement-btn {
-            background-color: #ffcc00;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 10px;
-            color: #333;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s, transform 0.2s;
-            font-size: 1.2em;
-            margin-top: 20px;
-        }
-
-        .home-btn:active, .share-achievement-btn:active {
-            background-color: #ffb700;
-            transform: scale(0.95);
-        }
-
-        .home-btn:focus, .share-achievement-btn:focus {
-            outline: none;
-            box-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .name-form, .home-form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .name-form input, .home-form button {
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1.2em;
-        }
-
-        .home-logo {
-            width: 150px;
-            margin-bottom: 20px;
-            border-radius: 20px;
-        }
-
-        .tiktok-link {
-            margin-top: 20px;
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
-
-        .animated-smiley {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .animated-smiley img {
-            width: 50px;
-            animation: bounce 1s infinite;
-        }
-
-        .dialog-box {
-            background-color: #ffcc00;
-            padding: 10px;
-            border-radius: 10px;
-            margin-top: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-20px);
-            }
-            60% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .loading-spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #ffcc00;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Firework Animation */
-        .firework {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            width: 10px;
-            height: 10px;
-            background-color: transparent;
-            border-radius: 50%;
-            box-shadow: 0 0 10px 10px #ff5722;
-            animation: explode 0.5s ease-out forwards, fadeOut 0.5s ease-out 0.5s forwards;
-        }
-
-        @keyframes explode {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(5);
-            }
-        }
-
-        @keyframes fadeOut {
-            0% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-            }
-        }
-
-        .medal-text {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        .gold {
-            color: gold;
-        }
-
-        .silver {
-            color: silver;
-        }
-
-        .bronze {
-            color: #cd7f32;
-        }
-
-        /* Progress Bar */
-        .progress-container {
-            width: 100%;
-            background-color: #f3f3f3;
-            border-radius: 20px;
-            margin-bottom: 20px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .progress-bar {
-            height: 20px;
-            width: 0;
-            background-color: #ffcc00;
-            border-radius: 20px;
-            transition: width 0.4s ease;
-        }
-
-        /* Share Achievement */
-        #shareCanvas {
-            display: none;
-        }
-    </style>
-</head>
-<body>
-    <div id="homePage" class="home-form container-custom">
-        <img src="https://i.ibb.co/DQqCC6G/OIG1-1.jpg" alt="App Logo" class="home-logo">
-        <h2>Welcome to your Spoken English Coaching App</h2>
-        <button class="btn btn-warning btn-lg btn-block" onclick="showNameForm()">Comprehension Game - අවබෝධය පරීක්ෂා කිරීම</button>
-        <button class="btn btn-warning btn-lg btn-block" onclick="showTranslationGame()">English-Sinhala Translation Game</button>
-        <button class="btn btn-warning btn-lg btn-block" onclick="showCalendlyPage()">Book a Session</button>
-        <a href="https://www.tiktok.com/@kadda.coach?_t=8mQxmejjlgt&_r=1" class="tiktok-link btn btn-link" target="_blank">Follow us on TikTok</a>
-        <p>This is a Mobile Website</p>
-        <p>👍App Coming Soon!👍<p>
-        <p>❤️Share this Page with Friends❤️</p>
-        <button class="share-btn btn btn-success btn-lg btn-block" onclick="sharePage()">Share This Page</button>
-        <p>Version 1.1 - Early Beta Release</p>
-        
-    </div>
-    <div id="nameForm" class="name-form container-custom" style="display:none;">
-        <h2>Enter Your Name</h2>
-        <input type="text" id="userNameInput" class="form-control" placeholder="Your name">
-        <button class="btn btn-warning btn-lg btn-block" onclick="startGame()">Start</button>
-    </div>
-    <div id="calendlyPage" class="name-form container-custom" style="display:none;">
-        <h2>Book a Session</h2>
-        <!-- Calendly Embed Code -->
-        <div id="calendlyEmbed"></div>
-        <p>Enjoy learning spoken English with our personalized sessions!</p>
-        <button class="btn btn-warning btn-lg btn-block" onclick="goToHome()">Return to Homepage</button>
-    </div>
-    <div id="translationGamePage" class="name-form container-custom" style="display:none;">
-        <div class="navbar bg-warning container-custom">
-            <div class="points">
-                Points: <span id="points">0</span> <img src="https://img.icons8.com/emoji/48/000000/coin-emoji.png" alt="coin icon">
-            </div>
-            <div id="username">Username</div>
-        </div>
         <h2>English-Sinhala Translation Game</h2>
         <div id="translation-game-container" class="container-custom"></div>
         <div class="popup correct" id="correctPopupTranslation">That's correct!</div>
@@ -803,12 +395,6 @@
                     <h2>Congratulations!</h2>
                     <p>The first step to speaking well is understanding and listening. Keep practicing and you'll see great improvements in your English skills!</p>
                     <p>හොඳින් කතා කිරීමේ පළමු පියවර වන්නේ අවබෝධය සහ සවන්දීමයි. දිගටම පුහුණු වන්න, එවිට ඔබේ ඉංග්‍රීසි කුසලතාවන්හි විශාල දියුණුවක් ඔබට පෙනෙනු ඇත!</p>
-                    <div class="navbar bg-warning container-custom">
-                        <div class="points">
-                            Points: <span id="pointsTranslation">0</span> <img src="https://img.icons8.com/emoji/48/000000/coin-emoji.png" alt="coin icon">
-                        </div>
-                        <div id="usernameTranslation">Username</div>
-                    </div>
                     <div class="score">Your Score: <span id="finalScoreTranslation"></span></div>
                     <div class="animated-smiley">
                         <img src="https://img.icons8.com/emoji/48/000000/smiling-face-with-smiling-eyes.png" alt="Smiley">
@@ -973,7 +559,6 @@
             userName = document.getElementById('userNameInput').value;
             if (userName) {
                 document.getElementById('username').innerText = userName;
-                document.getElementById('usernameTranslation').innerText = userName;
                 document.getElementById('nameForm').style.display = 'none';
                 document.getElementById('appContent').style.display = 'block';
                 showGame(0);
@@ -1103,8 +688,6 @@
                     overlay.style.display = 'none';
                     if (currentGameIndex < comprehensionGamesData.length - 1) {
                         document.getElementById('nextGamePopup').style.display = 'block';
-                    } else {
-                        displayCongratsMessage();
                     }
                 }, 2000);
             } else {
@@ -1137,8 +720,6 @@
                     overlay.style.display = 'none';
                     if (currentGameIndex < translationGamesData.length - 1) {
                         document.getElementById('nextGamePopupTranslation').style.display = 'block';
-                    } else {
-                        displayTranslationCongratsMessage();
                     }
                 }, 2000);
             } else {
@@ -1177,7 +758,6 @@
             gameContainer.innerHTML = '';
             const congratsMessage = document.getElementById('translationCongratsMessage');
             document.getElementById('finalScoreTranslation').innerText = points;
-            document.getElementById('pointsTranslation').innerText = points;
             congratsMessage.style.display = 'block';
             createFireworks();
             determineMedal(points, 'Translation');
@@ -1229,7 +809,6 @@
             document.getElementById('points').innerText = points;
             userName = '';
             document.getElementById('username').innerText = 'Username';
-            document.getElementById('usernameTranslation').innerText = 'Username';
             document.getElementById('nameForm').style.display = 'none';
             document.getElementById('congratsMessage').style.display = 'none';
             document.getElementById('translationCongratsMessage').style.display = 'none';
@@ -1305,5 +884,3 @@
     </script>
 </body>
 </html>
-
-
