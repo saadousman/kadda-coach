@@ -297,7 +297,7 @@
             0% {
                 transform: translate(-50%, -50%) scale(1);
             }
-            100% {
+             100% {
                 transform: translate(-50%, -50%) scale(5);
             }
         }
@@ -366,6 +366,7 @@
         <p>❤️Share this Page with Friends❤️</p>
         <button class="share-btn btn btn-success btn-lg btn-block" onclick="sharePage()">Share This Page</button>
         <p>Version 1.1 - Early Beta Release</p>
+        
     </div>
     <div id="nameForm" class="name-form container-custom" style="display:none;">
         <h2>Enter Your Name</h2>
@@ -380,13 +381,45 @@
         <button class="btn btn-warning btn-lg btn-block" onclick="goToHome()">Return to Homepage</button>
     </div>
     <div id="translationGamePage" class="name-form container-custom" style="display:none;">
+        <div class="navbar bg-warning container-custom">
+            <div class="points">
+                Points: <span id="points">0</span> <img src="https://img.icons8.com/emoji/48/000000/coin-emoji.png" alt="coin icon">
+            </div>
+            <div id="usernameTranslation">Username</div>
+        </div>
+        <div class="progress-container container-custom">
+            <div class="progress">
+                <div class="progress-bar" id="progressBarTranslation"></div>
+            </div>
+        </div>
         <h2>English-Sinhala Translation Game</h2>
         <div id="translation-game-container" class="container-custom"></div>
         <div class="popup correct" id="correctPopupTranslation">That's correct!</div>
         <div class="popup incorrect" id="incorrectPopupTranslation">Oops, try again!</div>
         <div class="popup next-game" id="nextGamePopupTranslation" onclick="showNextTranslationGame()">Next Game</div>
         <div class="overlay" id="overlayTranslation"></div>
-        <button class="btn btn-warning btn-lg btn-block" onclick="goToHome()">Return to Homepage</button>
+    </div>
+    <div id="translationCongratsMessage" style="display: none;">
+        <div class="container">
+            <div class="content">
+                <div class="congrats-message">
+                    <h2>Congratulations!</h2>
+                    <p>The first step to speaking well is understanding and listening. Keep practicing and you'll see great improvements in your English skills!</p>
+                    <p>හොඳින් කතා කිරීමේ පළමු පියවර වන්නේ අවබෝධය සහ සවන්දීමයි. දිගටම පුහුණු වන්න, එවිට ඔබේ ඉංග්‍රීසි කුසලතාවන්හි විශාල දියුණුවක් ඔබට පෙනෙනු ඇත!</p>
+                    <div class="score">Your Score: <span id="finalScoreTranslation"></span></div>
+                    <div class="animated-smiley">
+                        <img src="https://img.icons8.com/emoji/48/000000/smiling-face-with-smiling-eyes.png" alt="Smiley">
+                        <div class="dialog-box">
+                            <p>I won the game!</p>
+                        </div>
+                    </div>
+                    <div class="medal-text" id="medalTextTranslation"></div>
+                    <button class="home-btn btn btn-warning btn-lg btn-block" onclick="goToHome()">Go to Homepage</button>
+                    <button class="share-achievement-btn btn btn-success btn-lg btn-block" onclick="generateAndDownloadImage()">Share Achievement</button>
+                    <canvas id="shareCanvas" width="400" height="300"></canvas>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="appContent" style="display:none;">
         <div class="navbar bg-warning container-custom">
@@ -522,7 +555,7 @@
                 "answers": [
                     {"text": "ගිහින් එන්නම්", "correct": true},
                     {"text": "ඔබට සුභ දවසක්", "correct": false},
-                    {"text": "ඔබට සුබ පැතුම්", "correct": false},
+                    {"text": "ඔබට සුභ පැතුම්", "correct": false},
                     {"text": "ආයුබෝවන්", "correct": false}
                 ]
             }
@@ -552,7 +585,7 @@
 
             // Calendly Embed Code
             var calendlyEmbed = document.createElement('iframe');
-            calendlyEmbed.src = 'https://calendly.com/your-calendly-link'; // Replace with your Calendly link
+            calendlyEmbed.src = 'https://calendly.com/kaddacoach/free-live-conversation-practice-with-a-tutor'; // Replace with your Calendly link
             calendlyEmbed.width = '100%';
             calendlyEmbed.height = '600px';
             calendlyEmbed.frameBorder = '0';
@@ -611,9 +644,16 @@
         }
 
         function showTranslationGame() {
-            document.getElementById('homePage').style.display = 'none';
-            document.getElementById('translationGamePage').style.display = 'flex';
-            showTranslationGameElement(0);
+            userName = document.getElementById('userNameInput').value;
+            if (userName) {
+                document.getElementById('usernameTranslation').innerText = userName;
+                document.getElementById('homePage').style.display = 'none';
+                document.getElementById('translationGamePage').style.display = 'flex';
+                showTranslationGameElement(0);
+                updateProgressBarTranslation();
+            } else {
+                alert('Please enter your name');
+            }
         }
 
         function showTranslationGameElement(index) {
@@ -643,8 +683,9 @@
             currentGameIndex++;
             if (currentGameIndex < translationGamesData.length) {
                 showTranslationGameElement(currentGameIndex);
+                updateProgressBarTranslation();
             } else {
-                displayCongratsMessage();
+                displayTranslationCongratsMessage();
             }
             document.getElementById('nextGamePopupTranslation').style.display = 'none';
         }
@@ -664,7 +705,11 @@
                 setTimeout(() => {
                     correctPopup.style.display = 'none';
                     overlay.style.display = 'none';
-                    document.getElementById('nextGamePopup').style.display = 'block';
+                    if (currentGameIndex < comprehensionGamesData.length - 1) {
+                        document.getElementById('nextGamePopup').style.display = 'block';
+                    } else {
+                        displayCongratsMessage();
+                    }
                 }, 2000);
             } else {
                 playSound('incorrect');
@@ -694,7 +739,11 @@
                 setTimeout(() => {
                     correctPopup.style.display = 'none';
                     overlay.style.display = 'none';
-                    document.getElementById('nextGamePopupTranslation').style.display = 'block';
+                    if (currentGameIndex < translationGamesData.length - 1) {
+                        document.getElementById('nextGamePopupTranslation').style.display = 'block';
+                    } else {
+                        displayTranslationCongratsMessage();
+                    }
                 }, 2000);
             } else {
                 playSound('incorrect');
@@ -715,6 +764,12 @@
             progressBar.style.width = `${progressPercentage}%`;
         }
 
+        function updateProgressBarTranslation() {
+            const progressBar = document.getElementById('progressBarTranslation');
+            const progressPercentage = ((currentGameIndex + 1) / translationGamesData.length) * 100;
+            progressBar.style.width = `${progressPercentage}%`;
+        }
+
         function displayCongratsMessage() {
             const gameContainer = document.getElementById('game-container');
             gameContainer.innerHTML = '';
@@ -727,8 +782,20 @@
             localStorage.setItem('highScore', Math.max(points, localStorage.getItem('highScore') || 0));
         }
 
-        function determineMedal(score) {
-            const medalText = document.getElementById('medalText');
+        function displayTranslationCongratsMessage() {
+            const gameContainer = document.getElementById('translation-game-container');
+            gameContainer.innerHTML = '';
+            const congratsMessage = document.getElementById('translationCongratsMessage');
+            document.getElementById('finalScoreTranslation').innerText = points;
+            congratsMessage.style.display = 'block';
+            createFireworks();
+            determineMedal(points, 'Translation');
+            sendDataToGoogleSheets(userName, points);
+            localStorage.setItem('highScoreTranslation', Math.max(points, localStorage.getItem('highScoreTranslation') || 0));
+        }
+
+        function determineMedal(score, gameType = 'Comprehension') {
+            const medalText = gameType === 'Comprehension' ? document.getElementById('medalText') : document.getElementById('medalTextTranslation');
             if (score >= 50) {
                 medalText.innerText = 'Gold';
                 medalText.className = 'medal-text gold';
@@ -771,14 +838,17 @@
             document.getElementById('points').innerText = points;
             userName = '';
             document.getElementById('username').innerText = 'Username';
+            document.getElementById('usernameTranslation').innerText = 'Username';
             document.getElementById('nameForm').style.display = 'none';
             document.getElementById('congratsMessage').style.display = 'none';
+            document.getElementById('translationCongratsMessage').style.display = 'none';
             document.getElementById('nextGamePopup').style.display = 'none';
             document.getElementById('nextGamePopupTranslation').style.display = 'none';
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('overlayTranslation').style.display = 'none';
             clearFireworks();
             updateProgressBar();
+            updateProgressBarTranslation();
         }
 
         function sharePage() {
@@ -798,7 +868,7 @@
         }
 
         function createFireworks() {
-            const congratsMessage = document.getElementById('congratsMessage');
+            const congratsMessage = document.querySelector('.congrats-message:visible');
             for (let i = 0; i < 10; i++) {
                 const firework = document.createElement('div');
                 firework.classList.add('firework');
