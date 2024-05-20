@@ -461,50 +461,40 @@
         let streak = 0;
 
         const comprehensionGamesData = [
-            {
-                "title": "Cricket Legends",
-                "videoUrl": "https://www.youtube.com/embed/qjqUyHhafWA?si=S2ZgVNMbx_-UIWZo&amp;clip=UgkxuYN_h8trGiTzGAROevRKNQoVGbEcLdgV&amp;clipt=EOCuGBiR4xo",
-                "question": "What does Sangakkara believe is going to happen?",
-                "answers": [
-                    {"text": "Sangakkara believes Murali's delivery to Jimmy Marr will be a doosra, but it turns out to be an off spinner and Sangakkara manages to do the stumping.", "correct": true},
-                    {"text": "Sangakkara correctly predicts that Murali will bowl an off spinner to Jimmy Marr, but the delivery turns out to be a doosra and he misses the stumping.", "correct": false},
-                    {"text": "Sangakkara anticipates that Murali will bowl a googly to Jimmy Marr, but it turns out to be a yorker and Marr defends it easily.", "correct": false},
-                    {"text": "Sangakkara expects Murali to bowl a yorker to Jimmy Marr, but the delivery turns out to be a googly and Marr hits it for a single", "correct": false}
-                ]
-            },
-            {
-                "title": "Smart Cricket",
-                "videoUrl": "https://www.youtube.com//embed/tTAbyygSK8o",
-                "question": "What was Kumar Sangakkara's admission about the slower ball strategy?",
-                "answers": [
-                    {"text": "He admitted that the slower ball never worked against Sri Lanka because the batsman could always read the bowler's hand movements.", "correct": false},
-                    {"text": "He confessed that Sri Lankan players were aware of the slower ball because they observed the non-striker's signals.", "correct": true},
-                    {"text": "He revealed that Sri Lanka had studied the bowler's slower ball technique extensively and could predict it every time.", "correct": false},
-                    {"text": "He mentioned that the Sri Lankan team had a specific strategy to counter slower balls by practicing against them intensively.", "correct": false}
-                ]
-            },
-            {
-                "title": "AI in Business",
-                "videoUrl": "https://www.youtube.com/embed/LCCbs_P1LiQ?si=lJnUEuy_ansmNUoF&amp;clip=UgkxvfJYQROAZUN0mhYbDZ1XyoYXNqe6Tj7y&amp;clipt=EJvMBRiX6gY",
-                "question": "What does the speaker think is important for business success in the future?",
-                "answers": [
-                    {"text": "Using artificial intelligence in the business, no matter what kind of business it is.", "correct": true},
-                    {"text": "Hiring more workers to get more done.", "correct": false},
-                    {"text": "Expanding the business to other countries to make more money.", "correct": false},
-                    {"text": "Sticking to old methods to keep things consistent.", "correct": false}
-                ]
-            },
-            {
-                "title": "Social Media Presence",
-                "videoUrl": "https://www.youtube.com/embed/gTf8hmTjR8A?si=2kboo4fAW-7B04TU&amp;clip=UgkxuMybSmvCBjHSEnjzsbrBIN2R3BdFdziv&amp;clipt=EPyiCxiG_ww",
-                "question": "Why did the speaker decide to join TikTok?",
-                "answers": [
-                    {"text": "To share important messages about animal welfare, entrepreneurship, and business with a younger audience who might appreciate and benefit from this content.", "correct": true},
-                    {"text": "To follow the trend because everyone else was joining TikTok and it seemed like the popular thing to do.", "correct": false},
-                    {"text": "To become more famous on social media and increase their number of followers across all platforms.", "correct": false},
-                    {"text": "To learn new dance moves and have fun making entertaining videos for the TikTok audience.", "correct": false}
-                ]
-            }
+        {
+    "title": "Cricket Legends",
+    "videoUrl": "https://www.youtube.com/embed/qjqUyHhafWA?si=S2ZgVNMbx_-UIWZo&amp;clip=UgkxuYN_h8trGiTzGAROevRKNQoVGbEcLdgV&amp;clipt=EOCuGBiR4xo",
+    "question": "What does Sangakkara believe is going to happen?",
+    "answers": [
+        {"text": "ජිමී මාර් වෙත මුරලිගේ පන්දු යැවීම දූස්රා එකක් වනු ඇතැයි සංගක්කාර විශ්වාස කරයි, නමුත් එය off spin බවට පත් වූ අතර සංගක්කාර ස්ටම්ප් කිරීමට සමත් විය", "correct": true},
+        {"text": "මුරලි ජිමී මාර් වෙත off spin ලෙස පන්දු යවන බව සංගක්කාර නිවැරදිව පුරෝකථනය කරයි, නමුත් එම පන්දු යැවීම දූස්රා බවට පත් වූ අතර ඔහුට ස්ටම්ප් කිරීම වැරදී ගියේය", "correct": false},
+        {"text": "මුරලි ජිමී මාර්ට ගූග්ලියක් යවනු ඇතැයි සංගක්කාර අපේක්ෂා කරයි, නමුත් එය යෝකර් එකක් බවට පත් වූ අතර මාර් එය පහසුවෙන් ආරක්ෂා කරයි.", "correct": false},
+        {"text": "මුරලි ජිමී මාර් වෙත යෝකර් පන්දුවක් යවනු ඇතැයි සංගක්කාර අපේක්ෂා කරයි, නමුත් එම පන්දු යැවීම ගූග්ලියක් බවට පත් වූ අතර මාර් එය තනි ලකුණකට ගැසීය.", "correct": false}
+    ]
+},
+{
+    "title": "Smart Cricket",
+    "videoUrl": "https://www.youtube.com//embed/tTAbyygSK8o",
+    "question": "What was Kumar Sangakkara's admission about the slower ball strategy?",
+    "answers": [
+        {"text": "ශ්‍රී ලංකාවට එරෙහිව මන්දගාමී පන්දුව කිසිවිටෙක ක්‍රියා නොකළ බව ඔහු පිළිගත්තේ පිතිකරුවාට සෑම විටම පන්දු යවන්නාගේ අත් චලනයන් කියවිය හැකි බැවිනි.", "correct": false},
+        {"text": "ශ්‍රී ලංකා ක්‍රීඩකයින් ප්‍රහාරක නොවන සංඥා නිරීක්ෂණය කළ බැවින් මන්දගාමී පන්දුව පිළිබඳව ශ්‍රී ලංකා ක්‍රීඩකයින් දැනුවත් වූ බව ඔහු පිළිගත්තේය.", "correct": true},
+        {"text": "පන්දු යවන්නාගේ මන්දගාමී පන්දු ක්‍රමය පිළිබඳව ශ්‍රී ලංකාව පුළුල් ලෙස අධ්‍යයනය කර ඇති බවත් සෑම අවස්ථාවකදීම එය අනාවැකි පළ කළ හැකි බවත් ඔහු අනාවරණය කළේය", "correct": false},
+        {"text": "ඔහු සඳහන් කළේ මන්දගාමී පන්දුවලට එරෙහිව දැඩි ලෙස පුහුණුවීම් කරමින් ඒවාට මුහුණදීම සඳහා ශ්‍රී ලංකා කණ්ඩායමට නිශ්චිත උපාය මාර්ගයක් තිබූ බවයි.", "correct": false}
+    ]
+},
+{
+    "title": "AI in Business",
+    "videoUrl": "https://www.youtube.com/embed/LCCbs_P1LiQ?si=lJnUEuy_ansmNUoF&amp;clip=UgkxvfJYQROAZUN0mhYbDZ1XyoYXNqe6Tj7y&amp;clipt=EJvMBRiX6gY",
+    "question": "What does the speaker think is important for business success in the future?",
+    "answers": [
+        {"text": "ව්‍යාපාරයේ කෘතිම බුද්ධිය භාවිතා කිරීම, එය කුමන ආකාරයේ ව්‍යාපාරයක් වුවද.", "correct": true},
+        {"text": "වැඩිපුර වැඩ කිරීම සඳහා වැඩිපුර සේවකයින් බඳවා ගැනීම.", "correct": false},
+        {"text": "තවත් මුදල් ඉපයීම සඳහා ව්‍යාපාරය වෙනත් රටවලට ව්‍යාප්ත කිරීම", "correct": false},
+        {"text": "දේවල් ස්ථාවරව තබා ගැනීමට පැරණි ක්‍රමවලට ඇලී සිටීම.", "correct": false}
+    ]
+}
+            
         ];
 
         const translationGamesData = [
