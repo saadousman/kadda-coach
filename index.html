@@ -358,7 +358,7 @@
         <img src="https://i.ibb.co/DQqCC6G/OIG1-1.jpg" alt="App Logo" class="home-logo">
         <h2>Welcome to your Spoken English Coaching App</h2>
         <button class="btn btn-warning btn-lg btn-block" onclick="showNameForm()">Comprehension Game - අවබෝධය පරීක්ෂා කිරීම</button>
-        <button class="btn btn-warning btn-lg btn-block" onclick="showTranslationGame()">English-Sinhala Translation Game</button>
+        <button class="btn btn-warning btn-lg btn-block" onclick="showTranslationNameForm()">English-Sinhala Translation Game</button>
         <button class="btn btn-warning btn-lg btn-block" onclick="showCalendlyPage()">Book a Session</button>
         <a href="https://www.tiktok.com/@kadda.coach?_t=8mQxmejjlgt&_r=1" class="tiktok-link btn btn-link" target="_blank">Follow us on TikTok</a>
         <p>This is a Mobile Website</p>
@@ -373,6 +373,11 @@
         <input type="text" id="userNameInput" class="form-control" placeholder="Your name">
         <button class="btn btn-warning btn-lg btn-block" onclick="startGame()">Start</button>
     </div>
+    <div id="translationNameForm" class="name-form container-custom" style="display:none;">
+        <h2>Enter Your Name</h2>
+        <input type="text" id="translationUserNameInput" class="form-control" placeholder="Your name">
+        <button class="btn btn-warning btn-lg btn-block" onclick="startTranslationGame()">Start</button>
+    </div>
     <div id="calendlyPage" class="name-form container-custom" style="display:none;">
         <h2>Book a Session</h2>
         <!-- Calendly Embed Code -->
@@ -383,7 +388,7 @@
     <div id="translationGamePage" class="name-form container-custom" style="display:none;">
         <div class="navbar bg-warning container-custom">
             <div class="points">
-                Points: <span id="points">0</span> <img src="https://img.icons8.com/emoji/48/000000/coin-emoji.png" alt="coin icon">
+                Points: <span id="pointsTranslation">0</span> <img src="https://img.icons8.com/emoji/48/000000/coin-emoji.png" alt="coin icon">
             </div>
             <div id="usernameTranslation">Username</div>
         </div>
@@ -566,6 +571,11 @@
             document.getElementById('nameForm').style.display = 'flex';
         }
 
+        function showTranslationNameForm() {
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('translationNameForm').style.display = 'flex';
+        }
+
         function startGame() {
             userName = document.getElementById('userNameInput').value;
             if (userName) {
@@ -574,6 +584,19 @@
                 document.getElementById('appContent').style.display = 'block';
                 showGame(0);
                 updateProgressBar();
+            } else {
+                alert('Please enter your name');
+            }
+        }
+
+        function startTranslationGame() {
+            userName = document.getElementById('translationUserNameInput').value;
+            if (userName) {
+                document.getElementById('usernameTranslation').innerText = userName;
+                document.getElementById('translationNameForm').style.display = 'none';
+                document.getElementById('translationGamePage').style.display = 'flex';
+                showTranslationGameElement(0);
+                updateProgressBarTranslation();
             } else {
                 alert('Please enter your name');
             }
@@ -641,19 +664,6 @@
             gameContainer.innerHTML = '';
             const gameElement = createGame(comprehensionGamesData[index]);
             gameContainer.appendChild(gameElement);
-        }
-
-        function showTranslationGame() {
-            userName = document.getElementById('userNameInput').value;
-            if (userName) {
-                document.getElementById('usernameTranslation').innerText = userName;
-                document.getElementById('homePage').style.display = 'none';
-                document.getElementById('translationGamePage').style.display = 'flex';
-                showTranslationGameElement(0);
-                updateProgressBarTranslation();
-            } else {
-                alert('Please enter your name');
-            }
         }
 
         function showTranslationGameElement(index) {
@@ -734,7 +744,7 @@
                 playSound('correct');
                 streak++;
                 points += 10 + (streak > 1 ? 5 : 0); // bonus points for streaks
-                document.getElementById('points').innerText = points;
+                document.getElementById('pointsTranslation').innerText = points;
                 correctPopup.style.display = 'block';
                 setTimeout(() => {
                     correctPopup.style.display = 'none';
@@ -749,7 +759,7 @@
                 playSound('incorrect');
                 streak = 0;
                 points -= 2;
-                document.getElementById('points').innerText = points;
+                document.getElementById('pointsTranslation').innerText = points;
                 incorrectPopup.style.display = 'block';
                 setTimeout(() => {
                     incorrectPopup.style.display = 'none';
@@ -836,10 +846,12 @@
             points = 0;
             streak = 0;
             document.getElementById('points').innerText = points;
+            document.getElementById('pointsTranslation').innerText = points;
             userName = '';
             document.getElementById('username').innerText = 'Username';
             document.getElementById('usernameTranslation').innerText = 'Username';
             document.getElementById('nameForm').style.display = 'none';
+            document.getElementById('translationNameForm').style.display = 'none';
             document.getElementById('congratsMessage').style.display = 'none';
             document.getElementById('translationCongratsMessage').style.display = 'none';
             document.getElementById('nextGamePopup').style.display = 'none';
