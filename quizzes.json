@@ -1,0 +1,33 @@
+{
+    "title": "Cricket Legends",
+    "videoUrl": "https://www.youtube.com/embed/qjqUyHhafWA?si=S2ZgVNMbx_-UIWZo&amp;clip=UgkxuYN_h8trGiTzGAROevRKNQoVGbEcLdgV&amp;clipt=EOCuGBiR4xo",
+    "question": "What does Sangakkara believe is going to happen?",
+    "answers": [
+        {"text": "ජිමී මාර් වෙත මුරලිගේ පන්දු යැවීම දූස්රා එකක් වනු ඇතැයි සංගක්කාර විශ්වාස කරයි, නමුත් එය off spin බවට පත් වූ අතර සංගක්කාර ස්ටම්ප් කිරීමට සමත් විය", "correct": true},
+        {"text": "මුරලි ජිමී මාර් වෙත off spin ලෙස පන්දු යවන බව සංගක්කාර නිවැරදිව පුරෝකථනය කරයි, නමුත් එම පන්දු යැවීම දූස්රා බවට පත් වූ අතර ඔහුට ස්ටම්ප් කිරීම වැරදී ගියේය", "correct": false},
+        {"text": "මුරලි ජිමී මාර්ට ගූග්ලියක් යවනු ඇතැයි සංගක්කාර අපේක්ෂා කරයි, නමුත් එය යෝකර් එකක් බවට පත් වූ අතර මාර් එය පහසුවෙන් ආරක්ෂා කරයි.", "correct": false},
+        {"text": "මුරලි ජිමී මාර් වෙත යෝකර් පන්දුවක් යවනු ඇතැයි සංගක්කාර අපේක්ෂා කරයි, නමුත් එම පන්දු යැවීම ගූග්ලියක් බවට පත් වූ අතර මාර් එය තනි ලකුණකට ගැසීය.", "correct": false}
+    ]
+},
+{
+    "title": "Smart Cricket",
+    "videoUrl": "https://www.youtube.com//embed/tTAbyygSK8o",
+    "question": "What was Kumar Sangakkara's admission about the slower ball strategy?",
+    "answers": [
+        {"text": "ශ්‍රී ලංකාවට එරෙහිව මන්දගාමී පන්දුව කිසිවිටෙක ක්‍රියා නොකළ බව ඔහු පිළිගත්තේ පිතිකරුවාට සෑම විටම පන්දු යවන්නාගේ අත් චලනයන් කියවිය හැකි බැවිනි.", "correct": false},
+        {"text": "ශ්‍රී ලංකා ක්‍රීඩකයින් ප්‍රහාරක නොවන සංඥා නිරීක්ෂණය කළ බැවින් මන්දගාමී පන්දුව පිළිබඳව ශ්‍රී ලංකා ක්‍රීඩකයින් දැනුවත් වූ බව ඔහු පිළිගත්තේය.", "correct": true},
+        {"text": "පන්දු යවන්නාගේ මන්දගාමී පන්දු ක්‍රමය පිළිබඳව ශ්‍රී ලංකාව පුළුල් ලෙස අධ්‍යයනය කර ඇති බවත් සෑම අවස්ථාවකදීම එය අනාවැකි පළ කළ හැකි බවත් ඔහු අනාවරණය කළේය", "correct": false},
+        {"text": "ඔහු සඳහන් කළේ මන්දගාමී පන්දුවලට එරෙහිව දැඩි ලෙස පුහුණුවීම් කරමින් ඒවාට මුහුණදීම සඳහා ශ්‍රී ලංකා කණ්ඩායමට නිශ්චිත උපාය මාර්ගයක් තිබූ බවයි.", "correct": false}
+    ]
+},
+{
+    "title": "AI in Business",
+    "videoUrl": "https://www.youtube.com/embed/LCCbs_P1LiQ?si=lJnUEuy_ansmNUoF&amp;clip=UgkxvfJYQROAZUN0mhYbDZ1XyoYXNqe6Tj7y&amp;clipt=EJvMBRiX6gY",
+    "question": "What does the speaker think is important for business success in the future?",
+    "answers": [
+        {"text": "ව්‍යාපාරයේ කෘතිම බුද්ධිය භාවිතා කිරීම, එය කුමන ආකාරයේ ව්‍යාපාරයක් වුවද.", "correct": true},
+        {"text": "වැඩිපුර වැඩ කිරීම සඳහා වැඩිපුර සේවකයින් බඳවා ගැනීම.", "correct": false},
+        {"text": "තවත් මුදල් ඉපයීම සඳහා ව්‍යාපාරය වෙනත් රටවලට ව්‍යාප්ත කිරීම", "correct": false},
+        {"text": "දේවල් ස්ථාවරව තබා ගැනීමට පැරණි ක්‍රමවලට ඇලී සිටීම.", "correct": false}
+    ]
+}
